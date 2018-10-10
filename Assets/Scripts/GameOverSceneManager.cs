@@ -11,15 +11,15 @@ public class GameOverSceneManager : MonoBehaviour
 
     private void Start()
     {
-        highScoreText.text = "Score: " + Constants.S.score.ToString();
+        highScoreText.text = "High Score: " + Constants.S.score.ToString();
     }
 
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer > 1)
+        if (timer > 2)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(1);
         }
     }
 }
