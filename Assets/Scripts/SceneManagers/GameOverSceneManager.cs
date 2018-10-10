@@ -11,7 +11,7 @@ public class GameOverSceneManager : MonoBehaviour
 
     private void Start()
     {
-        highScoreText.text = "High Score: " + Constants.S.score.ToString();
+        highScoreText.text = "High Score: " + Constants.S.highScore.ToString();
     }
 
     void Update()

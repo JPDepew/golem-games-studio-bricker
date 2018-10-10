@@ -5,20 +5,30 @@ using UnityEngine.UI;
 
 public class MainSceneManager : MonoBehaviour
 {
-    public Text highScoreText;
+    public Text scoreText;
 
+    int score = 0;
     float timer = 0;
 
     private void Start()
     {
-        highScoreText.text = "High Score: " + Constants.S.score.ToString();
+        scoreText.text = "Score: " + score;
     }
 
     void Update()
     {
-        timer += Time.deltaTime;
-        if (timer > 2)
+        if (Input.GetKey(KeyCode.Space))
         {
+            score += 10;
+        }
+        scoreText.text = "Score: " + score;
+        timer += Time.deltaTime;
+        if (timer > 5)
+        {
+            if(Constants.S.highScore < score)
+            {
+                Constants.S.SetHighScore(score);
+            }
             UnityEngine.SceneManagement.SceneManager.LoadScene(2);
         }
     }

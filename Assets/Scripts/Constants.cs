@@ -3,7 +3,7 @@
 public class Constants : MonoBehaviour
 {
     public string playerPrefHighScoreKey = "playerHighScore";
-    public int score = 0;
+    public int highScore = 0;
     static public Constants S;
 
     private void Awake()
@@ -12,13 +12,18 @@ public class Constants : MonoBehaviour
 
         if (PlayerPrefs.HasKey(playerPrefHighScoreKey))
         {
-            score = PlayerPrefs.GetInt(playerPrefHighScoreKey);
+            highScore = PlayerPrefs.GetInt(playerPrefHighScoreKey);
         }
         else
         {
-            Debug.Log(score);
-            PlayerPrefs.SetInt(playerPrefHighScoreKey, score);
+            PlayerPrefs.SetInt(playerPrefHighScoreKey, highScore);
         }
+    }
+
+    public void SetHighScore(int newHighScore)
+    {
+        highScore = newHighScore;
+        PlayerPrefs.SetInt(playerPrefHighScoreKey, highScore);
     }
 
     // Use this for initialization
