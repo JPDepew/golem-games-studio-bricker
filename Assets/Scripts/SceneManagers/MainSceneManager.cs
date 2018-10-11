@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainSceneManager : MonoBehaviour
@@ -13,6 +14,7 @@ public class MainSceneManager : MonoBehaviour
     private void Start()
     {
         scoreText.text = "Score: " + score;
+        StartCoroutine(ChangeScene());
     }
 
     void Update()
@@ -22,14 +24,15 @@ public class MainSceneManager : MonoBehaviour
             score += 10;
         }
         scoreText.text = "Score: " + score;
-        timer += Time.deltaTime;
-        if (timer > 5)
+    }
+
+    IEnumerator ChangeScene()
+    {
+        yield return new WaitForSeconds(5);
+        if (Constants.S.highScore < score)
         {
-            if(Constants.S.highScore < score)
-            {
-                Constants.S.SetHighScore(score);
-            }
-            UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+            Constants.S.SetHighScore(score);
         }
+        SceneManager.LoadScene(2);
     }
 }
