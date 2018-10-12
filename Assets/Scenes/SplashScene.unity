@@ -571,4 +571,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefHighScoreKey: playerHighScore
-  score: 250
+  highScore: 0
