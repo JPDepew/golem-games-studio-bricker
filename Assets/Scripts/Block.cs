@@ -2,20 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Block : MonoBehaviour {
+public class Block : MonoBehaviour
+{
 
     public int health = 1;
 
     SpriteRenderer spriteRenderer;
 
-	void Start () {
+    void Start()
+    {
         spriteRenderer = GetComponent<SpriteRenderer>();
 
     }
-	
-	void Update () {
-		
-	}
+
+    void Update()
+    {
+
+    }
 
     IEnumerator DestroyThis()
     {
@@ -24,14 +27,15 @@ public class Block : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.tag == "Ball")
+        if (collision.collider.CompareTag("Ball"))
         {
+            Debug.Log("po");
             health--;
-            if(health <= 0)
+            if (health <= 0)
             {
-                
+                StartCoroutine(DestroyThis());
             }
         }
     }

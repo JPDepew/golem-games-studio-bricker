@@ -14,7 +14,7 @@ public class MainSceneManager : MonoBehaviour
     private void Start()
     {
         scoreText.text = "Score: " + score;
-        StartCoroutine(ChangeScene());
+        //StartCoroutine(ChangeScene());
     }
 
     void Update()

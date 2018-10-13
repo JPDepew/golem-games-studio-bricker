@@ -9,8 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/SplashScene.unity
     guid: 3756e4d789158c04f804cb31c921530b
   - enabled: 1
-    path: Assets/Scenes/MainScene.unity
+    path: Assets/Scenes/Level01.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Level02.unity
+    guid: afc64413485b6c0479333887132fc971
   - enabled: 1
     path: Assets/Scenes/GameOverScene.unity
     guid: f17f2c431bd80264bb6788bf3ee622f4
