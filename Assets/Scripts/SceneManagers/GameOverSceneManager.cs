@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -13,17 +11,13 @@ public class GameOverSceneManager : MonoBehaviour
     private void Start()
     {
         highScoreText.text = "High Score: " + Constants.S.highScore.ToString();
-        StartCoroutine(ChangeScene());
     }
 
     void Update()
     {
-
-    }
-
-    IEnumerator ChangeScene()
-    {
-        yield return new WaitForSeconds(2);
-        SceneManager.LoadScene(1);
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SceneManager.LoadScene(2);
+        }
     }
 }

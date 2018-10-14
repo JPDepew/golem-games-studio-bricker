@@ -7,32 +7,37 @@ using UnityEngine.UI;
 public class MainSceneManager : MonoBehaviour
 {
     public Text scoreText;
+    public Text livesText;
+    public GameObject ball;
 
-    int score = 0;
     float timer = 0;
-
-    private void Start()
-    {
-        scoreText.text = "Score: " + score;
-        //StartCoroutine(ChangeScene());
-    }
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            score += 10;
-        }
-        scoreText.text = "Score: " + score;
+        scoreText.text = "Score: " + Constants.S.score;
+        livesText.text = "Lives: " + Constants.S.lives;
     }
 
-    IEnumerator ChangeScene()
+    public void OnBallDestroyed()
     {
-        yield return new WaitForSeconds(5);
-        if (Constants.S.highScore < score)
+        Constants.S.lives--;
+        if(Constants.S.lives <= 0) // game over
         {
-            Constants.S.SetHighScore(score);
+            if (Constants.S.highScore < Constants.S.score)
+            {
+                Constants.S.SetHighScore(Constants.S.score);
+            }
+            SceneManager.LoadScene(1);
         }
-        SceneManager.LoadScene(2);
+        else // respawn ball
+        {
+            StartCoroutine(RespawnBall());
+        }
+    }
+
+    IEnumerator RespawnBall()
+    {
+        yield return new WaitForSeconds(1f);
+        Instantiate(ball);
     }
 }

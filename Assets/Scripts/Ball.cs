@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-
     public Vector2 direction;
     public float speed = 2f;
 
     Rigidbody2D rigidbody;
+    MainSceneManager sceneManager;
 
     void Start()
     {
         direction.Normalize();
         rigidbody = GetComponent<Rigidbody2D>();
+        sceneManager = FindObjectOfType<MainSceneManager>();
     }
 
     void Update()
@@ -59,6 +60,15 @@ public class Ball : MonoBehaviour
             {
                 direction.y = Mathf.Abs(direction.y);
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Ball Destroy"))
+        {
+            sceneManager.OnBallDestroyed();
+            Destroy(gameObject);
         }
     }
 }

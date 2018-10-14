@@ -4,6 +4,8 @@ public class Constants : MonoBehaviour
 {
     public string playerPrefHighScoreKey = "playerHighScore";
     public int highScore = 0;
+    public int score = 0;
+    public int lives = 3;
     static public Constants S;
 
     private void Awake()

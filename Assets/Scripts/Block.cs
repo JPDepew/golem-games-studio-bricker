@@ -31,7 +31,7 @@ public class Block : MonoBehaviour
     {
         if (collision.collider.CompareTag("Ball"))
         {
-            Debug.Log("po");
+            Constants.S.score += 10;
             health--;
             if (health <= 0)
             {
