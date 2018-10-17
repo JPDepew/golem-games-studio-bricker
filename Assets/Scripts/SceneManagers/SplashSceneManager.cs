@@ -15,7 +15,7 @@ public class SplashSceneManager : MonoBehaviour
     private void Start()
     {
         highScoreText.text = "High Score: " + Constants.S.highScore.ToString();
-        targetTime = animator.GetCurrentAnimatorStateInfo(0).length;// highScoreText.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
+        targetTime = animator.GetCurrentAnimatorStateInfo(0).length;
 
         StartCoroutine(ChangeScene());
     }
@@ -28,6 +28,6 @@ public class SplashSceneManager : MonoBehaviour
     IEnumerator ChangeScene()
     {
         yield return new WaitForSeconds(targetTime);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 }

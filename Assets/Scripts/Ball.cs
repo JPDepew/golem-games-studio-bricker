@@ -26,31 +26,25 @@ public class Ball : MonoBehaviour
     /// If you think of something better, let me know. This seems to be pretty reliable, although not perfect.
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("poop'0;");
         if (collision.collider.CompareTag("Block"))
         {
             ContactPoint2D contactPoint = collision.GetContact(0);
-            Debug.Log(contactPoint.normal);
             /// There was some goofy stuff going on with bouncing, somehow normals weren't either (1,0), or (0,1) etc...
             /// So checking that the normal was greater than a certain value (0.5) got rid of that problem.
             if (contactPoint.normal.x > 0.5f)
             {
-                Debug.Log("x 1");
                 direction.x = Mathf.Abs(direction.x);
             }
             else if (contactPoint.normal.x < -0.5f)
             {
-                Debug.Log("x -1");
                 direction.x = Mathf.Abs(direction.x) * -1;
             }
             else if (contactPoint.normal.y > 0.5f)
             {
                 direction.y = Mathf.Abs(direction.y);
-                Debug.Log("y 1");
             }
             else if (contactPoint.normal.y < -0.5f)
             {
-                Debug.Log("y -1");
                 direction.y = Mathf.Abs(direction.y) * -1;
             }
         }
@@ -59,6 +53,33 @@ public class Ball : MonoBehaviour
             if (collision.transform.position.y < transform.position.y)
             {
                 direction.y = Mathf.Abs(direction.y);
+            }
+            PlayerMove player = collision.collider.GetComponent<PlayerMove>();
+            if (player.movingLeft)
+            {
+                direction.x -= 0.4f;
+                direction.Normalize();
+            }
+            else if (player.movingRight)
+            {
+                direction.x += 0.4f;
+                direction.Normalize();
+            }
+        }
+        else if (collision.collider.CompareTag("Player Left"))
+        {
+            if (collision.transform.position.y < transform.position.y)
+            {
+                direction = new Vector2(-2, 1);
+                direction.Normalize();
+            }
+        }
+        else if (collision.collider.CompareTag("Player Right"))
+        {
+            if (collision.transform.position.y < transform.position.y)
+            {
+                direction = new Vector2(2, 1);
+                direction.Normalize();
             }
         }
     }

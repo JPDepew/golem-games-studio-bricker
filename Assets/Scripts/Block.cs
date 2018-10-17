@@ -6,14 +6,18 @@ public class Block : MonoBehaviour
 {
     public ParticleSystem explosion;
     public int health = 1;
+    public delegate void OnBlockDestroyed();
+    public static event OnBlockDestroyed onBlockDestroyed;
 
     SpriteRenderer spriteRenderer;
     BoxCollider2D col;
+    MainSceneManager mainSceneManager;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         col = GetComponent<BoxCollider2D>();
+        mainSceneManager = FindObjectOfType<MainSceneManager>();
     }
 
     /// <summary>
@@ -41,6 +45,7 @@ public class Block : MonoBehaviour
             if (health <= 0)
             {
                 Constants.S.score += 10;
+                mainSceneManager.OnBlockDestroyed();
                 StartCoroutine(DestroyThis());
             }
         }

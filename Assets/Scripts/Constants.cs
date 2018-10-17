@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Constants : MonoBehaviour
 {
     public string playerPrefHighScoreKey = "playerHighScore";
     public int highScore = 0;
     public int score = 0;
-    public int lives = 3;
+    public int playerLives = 3;
+    public float playerSpeed = 0.2f;
+
     static public Constants S;
 
     private void Awake()
@@ -28,15 +31,16 @@ public class Constants : MonoBehaviour
         PlayerPrefs.SetInt(playerPrefHighScoreKey, highScore);
     }
 
-    // Use this for initialization
     void Start()
     {
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SceneManager.LoadScene(1);
+        }
     }
 }
