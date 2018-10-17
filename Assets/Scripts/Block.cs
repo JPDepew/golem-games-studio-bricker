@@ -44,7 +44,7 @@ public class Block : MonoBehaviour
             health--;
             if (health <= 0)
             {
-                Constants.S.score += 10;
+                Data.Instance.score += 10;
                 mainSceneManager.OnBlockDestroyed();
                 StartCoroutine(DestroyThis());
             }

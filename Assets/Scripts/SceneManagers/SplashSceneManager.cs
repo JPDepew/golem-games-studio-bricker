@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class SplashSceneManager : MonoBehaviour
 {
-    public Text highScoreText;
     public Animator animator;
 
     float timer = 0;
@@ -14,7 +13,6 @@ public class SplashSceneManager : MonoBehaviour
 
     private void Start()
     {
-        highScoreText.text = "High Score: " + Constants.S.highScore.ToString();
         targetTime = animator.GetCurrentAnimatorStateInfo(0).length;
 
         StartCoroutine(ChangeScene());

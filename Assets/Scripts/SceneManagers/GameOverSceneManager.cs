@@ -5,12 +5,15 @@ using UnityEngine.UI;
 public class GameOverSceneManager : MonoBehaviour
 {
     public Text highScoreText;
+    public Text scoreText;
 
     float timer = 0;
 
     private void Start()
     {
         highScoreText.text = "High Score: " + Constants.S.highScore.ToString();
+        scoreText.text = "Score: " + Data.Instance.score.ToString();
+        Data.Instance.ResetAll();
     }
 
     void Update()

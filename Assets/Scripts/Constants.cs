@@ -3,11 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class Constants : MonoBehaviour
 {
-    public string playerPrefHighScoreKey = "playerHighScore";
     public int highScore = 0;
-    public int score = 0;
-    public int playerLives = 3;
     public float playerSpeed = 0.2f;
+
+    string playerPrefHighScoreKey = "playerHighScore";
 
     static public Constants S;
 
@@ -15,14 +14,7 @@ public class Constants : MonoBehaviour
     {
         S = this;
 
-        if (PlayerPrefs.HasKey(playerPrefHighScoreKey))
-        {
-            highScore = PlayerPrefs.GetInt(playerPrefHighScoreKey);
-        }
-        else
-        {
-            PlayerPrefs.SetInt(playerPrefHighScoreKey, highScore);
-        }
+        SetPlayerPrefs();
     }
 
     public void SetHighScore(int newHighScore)
@@ -31,16 +23,15 @@ public class Constants : MonoBehaviour
         PlayerPrefs.SetInt(playerPrefHighScoreKey, highScore);
     }
 
-    void Start()
+    void SetPlayerPrefs()
     {
-
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (PlayerPrefs.HasKey(playerPrefHighScoreKey))
         {
-            SceneManager.LoadScene(1);
+            highScore = PlayerPrefs.GetInt(playerPrefHighScoreKey);
+        }
+        else
+        {
+            PlayerPrefs.SetInt(playerPrefHighScoreKey, highScore);
         }
     }
 }

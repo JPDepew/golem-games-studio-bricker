@@ -14,6 +14,10 @@ public class MainSceneManager : MonoBehaviour
     int blocksCount = 0;
     int blocksDestroyed;
 
+    private void Awake()
+    {
+    }
+
     private void Start()
     {
         StartCoroutine(RespawnBall());
@@ -22,19 +26,19 @@ public class MainSceneManager : MonoBehaviour
 
     void Update()
     {
-        scoreText.text = "Score: " + Constants.S.score;
-        livesText.text = "Lives: " + Constants.S.playerLives;
+        scoreText.text = "Score: " + Data.Instance.score;
+        livesText.text = "Lives: " + Data.Instance.lives;
         Block.onBlockDestroyed += OnBlockDestroyed;
     }
 
     public void OnBallDestroyed()
     {
-        Constants.S.playerLives--;
-        if (Constants.S.playerLives <= 0) // game over
+        Data.Instance.lives--;
+        if (Data.Instance.lives <= 0) // game over
         {
-            if (Constants.S.highScore < Constants.S.score)
+            if (Constants.S.highScore < Data.Instance.score)
             {
-                Constants.S.SetHighScore(Constants.S.score);
+                Constants.S.SetHighScore(Data.Instance.score);
             }
             SceneManager.LoadScene(1); // Game Over Scene
         }
@@ -64,7 +68,7 @@ public class MainSceneManager : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(1); // Game Over
         }
     }
 
