@@ -10,6 +10,7 @@ public class MainSceneManager : MonoBehaviour
     public Text livesText;
     public Text pressSpaceText;
     public GameObject ball;
+    public GameObject ballRef;
     public GameObject player;
     public Transform playerSpawnPoint;
     public float waitToLoadNextSceneTime = 1f;
@@ -31,7 +32,7 @@ public class MainSceneManager : MonoBehaviour
 
         if (canRespawnBall && Input.GetKeyDown(KeyCode.Space))
         {
-            ball = Instantiate(ball, new Vector2(player.transform.position.x, player.transform.position.y + 0.5f), transform.rotation);
+            ballRef = Instantiate(ball, new Vector2(player.transform.position.x, player.transform.position.y + 0.5f), transform.rotation);
             canRespawnBall = false;
             pressSpaceText.enabled = false;
         }
@@ -61,7 +62,7 @@ public class MainSceneManager : MonoBehaviour
 
         if (blocksDestroyed >= blocksCount)
         {
-            Destroy(ball);
+            Destroy(ballRef);
             StartCoroutine(LoadNextScene());
             if (Constants.S.highScore < Data.Instance.score)
             {
