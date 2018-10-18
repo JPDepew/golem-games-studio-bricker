@@ -9,12 +9,14 @@ public class Ball : MonoBehaviour
 
     Rigidbody2D rigidbody;
     MainSceneManager sceneManager;
+    AudioSource bounceSound;
 
     void Start()
     {
         direction.Normalize();
         rigidbody = GetComponent<Rigidbody2D>();
         sceneManager = FindObjectOfType<MainSceneManager>();
+        bounceSound = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -65,6 +67,7 @@ public class Ball : MonoBehaviour
                 direction.x += 0.4f;
                 direction.Normalize();
             }
+            bounceSound.Play();
         }
         else if (collision.collider.CompareTag("Player Left"))
         {

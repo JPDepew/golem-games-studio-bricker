@@ -14,12 +14,14 @@ public class Block : MonoBehaviour
     SpriteRenderer spriteRenderer;
     BoxCollider2D col;
     MainSceneManager mainSceneManager;
+    AudioSource blockAudio;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         col = GetComponent<BoxCollider2D>();
         mainSceneManager = FindObjectOfType<MainSceneManager>();
+        blockAudio = GetComponent<AudioSource>();
     }
 
     /// <summary>
@@ -58,6 +60,7 @@ public class Block : MonoBehaviour
             {
                 spriteRenderer.color = secondColor;
             }
+            blockAudio.Play();
         }
     }
 }
