@@ -75,6 +75,7 @@ public class Ball : MonoBehaviour
             {
                 direction = new Vector2(-2, 1);
                 direction.Normalize();
+                bounceSound.Play();
             }
         }
         else if (collision.collider.CompareTag("Player Right"))
@@ -83,6 +84,7 @@ public class Ball : MonoBehaviour
             {
                 direction = new Vector2(2, 1);
                 direction.Normalize();
+                bounceSound.Play();
             }
         }
     }
