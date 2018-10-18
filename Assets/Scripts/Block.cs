@@ -8,8 +8,6 @@ public class Block : MonoBehaviour
     public int health = 1;
     public Color baseColor;
     public Color secondColor;
-    public delegate void OnBlockDestroyed();
-    public static event OnBlockDestroyed onBlockDestroyed;
 
     SpriteRenderer spriteRenderer;
     BoxCollider2D col;

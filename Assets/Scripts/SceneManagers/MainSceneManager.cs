@@ -8,27 +8,33 @@ public class MainSceneManager : MonoBehaviour
 {
     public Text scoreText;
     public Text livesText;
+    public Text pressSpaceText;
     public GameObject ball;
+    public GameObject player;
+    public Transform playerSpawnPoint;
     public float waitToLoadNextSceneTime = 1f;
 
     int blocksCount = 0;
     int blocksDestroyed;
-
-    private void Awake()
-    {
-    }
+    bool canRespawnBall = true;
 
     private void Start()
     {
-        StartCoroutine(RespawnBall());
         blocksCount = FindObjectsOfType<Block>().Length;
+        player = Instantiate(player, playerSpawnPoint.position, transform.rotation);
     }
 
     void Update()
     {
         scoreText.text = "Score: " + Data.Instance.score;
         livesText.text = "Lives: " + Data.Instance.lives;
-        Block.onBlockDestroyed += OnBlockDestroyed;
+
+        if (canRespawnBall && Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(ball, new Vector2(player.transform.position.x, player.transform.position.y + 0.5f), transform.rotation);
+            canRespawnBall = false;
+            pressSpaceText.enabled = false;
+        }
     }
 
     public void OnBallDestroyed()
@@ -44,16 +50,16 @@ public class MainSceneManager : MonoBehaviour
         }
         else // respawn ball
         {
-            StartCoroutine(RespawnBall());
+            pressSpaceText.enabled = true;
+            canRespawnBall = true;
         }
     }
 
     public void OnBlockDestroyed()
     {
-        Block.onBlockDestroyed -= OnBlockDestroyed;
         blocksDestroyed++;
-    
-        if(blocksDestroyed >= blocksCount)
+
+        if (blocksDestroyed >= blocksCount)
         {
             StartCoroutine(LoadNextScene());
         }
@@ -70,11 +76,5 @@ public class MainSceneManager : MonoBehaviour
         {
             SceneManager.LoadScene(1); // Game Over
         }
-    }
-
-    IEnumerator RespawnBall()
-    {
-        yield return new WaitForSeconds(1f);
-        Instantiate(ball);
     }
 }
