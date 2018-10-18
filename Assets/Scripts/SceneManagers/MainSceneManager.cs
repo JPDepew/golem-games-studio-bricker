@@ -35,6 +35,11 @@ public class MainSceneManager : MonoBehaviour
             canRespawnBall = false;
             pressSpaceText.enabled = false;
         }
+        if (Data.Instance.scoreCounter >= 500)
+        {
+            Data.Instance.scoreCounter -= 500;
+            Data.Instance.lives++;
+        }
     }
 
     public void OnBallDestroyed()

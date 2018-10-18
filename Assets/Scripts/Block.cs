@@ -47,6 +47,7 @@ public class Block : MonoBehaviour
             if (health <= 0)
             {
                 Data.Instance.score += 10;
+                Data.Instance.scoreCounter += 10;
                 mainSceneManager.OnBlockDestroyed();
                 StartCoroutine(DestroyThis());
                 blockAudio[0].Play();

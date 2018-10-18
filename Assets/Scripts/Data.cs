@@ -32,4 +32,5 @@ public class Data : MonoBehaviour
 
     public int score = 0;
     public int lives = 3;
+    public int scoreCounter = 0;
 }
