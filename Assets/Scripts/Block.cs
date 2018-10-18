@@ -12,14 +12,14 @@ public class Block : MonoBehaviour
     SpriteRenderer spriteRenderer;
     BoxCollider2D col;
     MainSceneManager mainSceneManager;
-    AudioSource blockAudio;
+    AudioSource[] blockAudio;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         col = GetComponent<BoxCollider2D>();
         mainSceneManager = FindObjectOfType<MainSceneManager>();
-        blockAudio = GetComponent<AudioSource>();
+        blockAudio = GetComponents<AudioSource>();
     }
 
     /// <summary>
@@ -49,16 +49,18 @@ public class Block : MonoBehaviour
                 Data.Instance.score += 10;
                 mainSceneManager.OnBlockDestroyed();
                 StartCoroutine(DestroyThis());
+                blockAudio[0].Play();
             }
             else if (health == 1)
             {
+                blockAudio[1].Play();
                 spriteRenderer.color = baseColor;
             }
             else if (health == 2)
             {
+                blockAudio[1].Play();
                 spriteRenderer.color = secondColor;
             }
-            blockAudio.Play();
         }
     }
 }
