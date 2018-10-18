@@ -31,14 +31,9 @@ public class MainSceneManager : MonoBehaviour
 
         if (canRespawnBall && Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(ball, new Vector2(player.transform.position.x, player.transform.position.y + 0.5f), transform.rotation);
+            ball = Instantiate(ball, new Vector2(player.transform.position.x, player.transform.position.y + 0.5f), transform.rotation);
             canRespawnBall = false;
             pressSpaceText.enabled = false;
-        }
-        if (Data.Instance.scoreCounter >= 500)
-        {
-            Data.Instance.scoreCounter -= 500;
-            Data.Instance.lives++;
         }
     }
 
@@ -66,7 +61,17 @@ public class MainSceneManager : MonoBehaviour
 
         if (blocksDestroyed >= blocksCount)
         {
+            Destroy(ball);
             StartCoroutine(LoadNextScene());
+            if (Constants.S.highScore < Data.Instance.score)
+            {
+                Constants.S.SetHighScore(Data.Instance.score);
+            }
+        }
+        if (Data.Instance.scoreCounter >= 500)
+        {
+            Data.Instance.scoreCounter -= 500;
+            Data.Instance.lives++;
         }
     }
 
