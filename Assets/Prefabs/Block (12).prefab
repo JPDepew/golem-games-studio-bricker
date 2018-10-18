@@ -102,6 +102,8 @@ MonoBehaviour:
   explosion: {fileID: 198197088532095582, guid: 76872de6391dd324192cc66fdb5fab1b,
     type: 2}
   health: 1
+  baseColor: {r: 0.37647063, g: 0.67058825, b: 0.94117653, a: 0}
+  secondColor: {r: 0.94117653, g: 0.94117653, b: 0.94117653, a: 0}
 --- !u!212 &212908778579429842
 SpriteRenderer:
   m_ObjectHideFlags: 1

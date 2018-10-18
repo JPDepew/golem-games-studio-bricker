@@ -6,6 +6,8 @@ public class Block : MonoBehaviour
 {
     public ParticleSystem explosion;
     public int health = 1;
+    public Color baseColor;
+    public Color secondColor;
     public delegate void OnBlockDestroyed();
     public static event OnBlockDestroyed onBlockDestroyed;
 
@@ -47,6 +49,14 @@ public class Block : MonoBehaviour
                 Data.Instance.score += 10;
                 mainSceneManager.OnBlockDestroyed();
                 StartCoroutine(DestroyThis());
+            }
+            else if (health == 1)
+            {
+                spriteRenderer.color = baseColor;
+            }
+            else if (health == 2)
+            {
+                spriteRenderer.color = secondColor;
             }
         }
     }
